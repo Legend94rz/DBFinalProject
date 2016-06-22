@@ -1,0 +1,37 @@
+#include "DAL.h"
+#include <sqlca.h>
+EXEC SQL BEGIN DECLARE SECTION;
+char* username,* password,* server;
+EXEC SQL END DECLARE SECTION;
+DAL::DAL(char* usr,char* pswd,char* serv)
+{
+	username=usr;password=pswd;server=serv;
+	EXEC SQL CONNECT:username IDENTIFIED BY:password USING:server;
+	assert(sqlca.sqlcode==0);
+}
+
+DAL::~DAL(void)
+{
+	//TODO: Close Connection
+}
+
+bool DAL::Add(StudentInfo stu)
+{
+	//TODO: insert into [StudentInfo] (Number,Name,Gender,Phone,Email,Age) Values (stu.Number, stu.Name, stu.Gender, stu.Phone, stu.Email, stu.Age)
+	return true;
+}
+bool DAL::Update(StudentInfo stu)
+{
+	//TODO: Update [StudentInfo] set Name=stu.Name,Gender=stu.Gender,Phone=stu.Phone,Email=stu.Email,Age=stu.Age where Number=stu.Number;
+	return true;
+}
+vector<StudentInfo> DAL::Get(string filter)
+{
+	//TODO: Select * from [StudentInfo] where + filter
+	return vector<StudentInfo>();
+}
+int DAL::Delete(string filter)
+{
+	//TODO: Delete from [StudentInfo] where + filter
+	return 0;
+}
