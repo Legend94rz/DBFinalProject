@@ -30,8 +30,19 @@ bool DAL::Add(StudentInfo stu)
 bool DAL::Update(StudentInfo stu)//根据学生学号进行查询更新？
 {
 	//TODO: Update [StudentInfo] set Name=stu.Name,Gender=stu.Gender,Phone=stu.Phone,Email=stu.Email,Age=stu.Age where Number=stu.Number;
-	//EXEC SQL FETCH SX INTO :Number,:Name,:Gender,:Phone,:Eamil,:Age;
+	
+	EXEC SQL DECLARE SX CURSOR FOR SELECT Number,Name,Gender,Phone,Email,Age FROM StudentInfo where Number=;stu.Number;
+	EXEC SQL OPEN SX;
+	for(;;)
+	{
+	EXEC SQL FETCH SX INTO :Number,:Name,:Gender,:Phone,:Eamil,:Age;
+	if(sqlca->sqlcode!=0)
+		break;
 	EXEC SQL UPDATE StudentInfo  set NAME=:stu.Name,GENDER=:stu.Gender,PHONE=:stu.Phone,Email=:stu.Email,Age=:stu.Age where  Number=:stu.Number;
+	
+	}
+	
+	EXEC SQL CLOSE　SX;
 	EXEC SQL COMMIT WORK;
 	return true;
 }
