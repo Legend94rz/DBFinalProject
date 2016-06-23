@@ -18,6 +18,15 @@ DAL::~DAL(void)
 bool DAL::Add(StudentInfo stu)
 {
 	//TODO: insert into [StudentInfo] (Number,Name,Gender,Phone,Email,Age) Values (stu.Number, stu.Name, stu.Gender, stu.Phone, stu.Email, stu.Age)
+	sno = stu.number;
+	name = stu.name;
+	gender = stu.gender;
+	phone = stu.phone;
+	email = stu.email;
+	age = stu.age;
+	EXEC SQL INSERT into StudentInfo  (Sno,Name,Gender,Phone,Email,Age)
+	VALUES(:sno, :name, :gender. :phone, :email, :age);
+	EXEC SQL COMMIT WORK;
 	return true;
 }
 bool DAL::Update(StudentInfo stu)
