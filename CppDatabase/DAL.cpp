@@ -60,16 +60,16 @@ static struct sqltdss sqltds =
 struct sqlcxp
 {
   unsigned short fillen;
-           char  filnam[34];
+           char  filnam[7];
 };
 static const struct sqlcxp sqlfpn =
 {
-    33,
-    "G:\\CppDatabase\\CppDatabase\\DAL.pc"
+    6,
+    "dal.pc"
 };
 
 
-static unsigned int sqlctx = 151555851;
+static unsigned int sqlctx = 4235;
 
 
 static struct sqlexd {
@@ -102,6 +102,7 @@ static struct sqlexd {
               int   sqfoff;
    unsigned int   sqcmod;
    unsigned int   sqfmod;
+   unsigned int   sqlpfmem;
             void  *sqhstv[4];
    unsigned int   sqhstl[4];
             int   sqhsts[4];
@@ -111,32 +112,32 @@ static struct sqlexd {
    unsigned int   *sqharc[4];
    unsigned short  sqadto[4];
    unsigned short  sqtdso[4];
-} sqlstm = {12,4};
+} sqlstm = {13,4};
 
-// Prototypes
-extern "C" {
-  void sqlcxt (void **, unsigned int *,
-               struct sqlexd *, const struct sqlcxp *);
-  void sqlcx2t(void **, unsigned int *,
-               struct sqlexd *, const struct sqlcxp *);
-  void sqlbuft(void **, char *);
-  void sqlgs2t(void **, char *);
-  void sqlorat(void **, unsigned int *, void *);
-}
+/* SQLLIB Prototypes */
+extern void sqlcxt (void **, unsigned int *,
+                    struct sqlexd *, const struct sqlcxp *);
+extern void sqlcx2t(void **, unsigned int *,
+                    struct sqlexd *, const struct sqlcxp *);
+extern void sqlbuft(void **, char *);
+extern void sqlgs2t(void **, char *);
+extern void sqlorat(void **, unsigned int *, void *);
 
-// Forms Interface
+/* Forms Interface */
 static const int IAPSUCC = 0;
 static const int IAPFAIL = 1403;
 static const int IAPFTL  = 535;
-extern "C" { void sqliem(unsigned char *, signed int *); }
+extern void sqliem(unsigned char *, signed int *);
 
 typedef struct { unsigned short len; unsigned char arr[1]; } VARCHAR;
 typedef struct { unsigned short len; unsigned char arr[1]; } varchar;
 
 /* cud (compilation unit data) array */
 static const short sqlcud0[] =
-{12,4130,852,0,0,
-5,0,0,0,0,0,27,9,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+{13,4130,852,0,0,
+5,0,0,0,0,0,27,16,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+36,0,0,2,101,0,3,34,0,0,0,0,0,1,0,
+51,0,0,3,0,0,29,36,0,0,0,0,0,1,0,
 };
 
 
@@ -145,6 +146,13 @@ static const short sqlcud0[] =
 /* EXEC SQL BEGIN DECLARE SECTION; */ 
 
 char* username,* password,* server;
+char number[20];
+char name[20];
+int gender;
+char phone[20];
+char email[20];
+int age;
+
 /* EXEC SQL END DECLARE SECTION; */ 
 
 DAL::DAL(char* usr,char* pswd,char* serv)
@@ -154,7 +162,7 @@ DAL::DAL(char* usr,char* pswd,char* serv)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 4;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
@@ -217,6 +225,51 @@ DAL::~DAL(void)
 bool DAL::Add(StudentInfo stu)
 {
 	//TODO: insert into [StudentInfo] (Number,Name,Gender,Phone,Email,Age) Values (stu.Number, stu.Name, stu.Gender, stu.Phone, stu.Email, stu.Age)
+	number = stu.number;
+	name = stu.name;
+	gender = stu.gender;
+	phone = stu.phone;
+	email = stu.email;
+	age = stu.age;
+	/* EXEC SQL INSERT into StudentInfo  (Sno,Name,Gender,Phone,Email,Age)
+	VALUES(number, name, gender. phone, email, age); */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 13;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.stmt = "insert into StudentInfo (Sno,Name,Gender,Phone,Email,Age) v\
+alues (number,name,gender.phone,email,age)";
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )36;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	/* EXEC SQL COMMIT WORK; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 13;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )51;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
 	return true;
 }
 bool DAL::Update(StudentInfo stu)
