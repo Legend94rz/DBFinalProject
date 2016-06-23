@@ -39,7 +39,7 @@ bool DAL::Update(StudentInfo stu)//根据学生学号进行查询更新？
 	if(sqlca->sqlcode!=0)
 		break;
 	EXEC SQL UPDATE StudentInfo  set NAME=:stu.Name,GENDER=:stu.Gender,PHONE=:stu.Phone,Email=:stu.Email,Age=:stu.Age where  Sno=:stu.Sno;
-	
+	   
 	}
 	
 	EXEC SQL CLOSE　SX;
