@@ -102,16 +102,16 @@ static struct sqlexd {
               int   sqfoff;
    unsigned int   sqcmod;
    unsigned int   sqfmod;
-            void  *sqhstv[4];
-   unsigned int   sqhstl[4];
-            int   sqhsts[4];
-            void  *sqindv[4];
-            int   sqinds[4];
-   unsigned int   sqharm[4];
-   unsigned int   *sqharc[4];
-   unsigned short  sqadto[4];
-   unsigned short  sqtdso[4];
-} sqlstm = {12,4};
+            void  *sqhstv[6];
+   unsigned int   sqhstl[6];
+            int   sqhsts[6];
+            void  *sqindv[6];
+            int   sqinds[6];
+   unsigned int   sqharm[6];
+   unsigned int   *sqharc[6];
+   unsigned short  sqadto[6];
+   unsigned short  sqtdso[6];
+} sqlstm = {12,6};
 
 // Prototypes
 extern "C" {
@@ -136,7 +136,12 @@ typedef struct { unsigned short len; unsigned char arr[1]; } varchar;
 /* cud (compilation unit data) array */
 static const short sqlcud0[] =
 {12,4130,852,0,0,
-5,0,0,0,0,0,27,9,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+5,0,0,0,0,0,27,16,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+36,0,0,2,0,0,17,41,0,0,1,1,0,1,0,1,97,0,0,
+55,0,0,2,0,0,45,43,0,0,0,0,0,1,0,
+70,0,0,2,0,0,13,47,0,0,6,0,0,1,0,2,97,0,0,2,97,0,0,2,3,0,0,2,97,0,0,2,97,0,0,2,
+3,0,0,
+109,0,0,2,0,0,15,59,0,0,0,0,0,1,0,
 };
 
 
@@ -145,12 +150,19 @@ static const short sqlcud0[] =
 /* EXEC SQL BEGIN DECLARE SECTION; */ 
 
 char* username,* password,* server;
+const char* F;
+char number[20];
+char name[20];
+int gender;
+char phone[20];
+char email[20];
+int age;
 /* EXEC SQL END DECLARE SECTION; */ 
 
 DAL::DAL(char* usr,char* pswd,char* serv)
 {
 	username=usr;password=pswd;server=serv;
-	/* EXEC SQL CONNECT:username IDENTIFIED BY:password USING:server; */ 
+	/* EXEC SQL CONNECT :username IDENTIFIED BY :password USING :server; */ 
 
 {
  struct sqlexd sqlstm;
@@ -226,8 +238,180 @@ bool DAL::Update(StudentInfo stu)
 }
 vector<StudentInfo> DAL::Get(string filter)
 {
-	//TODO: Select * from [StudentInfo] where + filter
-	return vector<StudentInfo>();
+	if(filter=="")
+		filter="1=1";
+	string stmt="select * from StudentInfo where "+filter;
+	F = stmt.c_str();
+	/* EXEC SQL PREPARE statment FROM :F; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 12;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.stmt = "";
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )36;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlstm.sqhstv[0] = (         void  *)F;
+ sqlstm.sqhstl[0] = (unsigned int  )0;
+ sqlstm.sqhsts[0] = (         int  )0;
+ sqlstm.sqindv[0] = (         void  *)0;
+ sqlstm.sqinds[0] = (         int  )0;
+ sqlstm.sqharm[0] = (unsigned int  )0;
+ sqlstm.sqadto[0] = (unsigned short )0;
+ sqlstm.sqtdso[0] = (unsigned short )0;
+ sqlstm.sqphsv = sqlstm.sqhstv;
+ sqlstm.sqphsl = sqlstm.sqhstl;
+ sqlstm.sqphss = sqlstm.sqhsts;
+ sqlstm.sqpind = sqlstm.sqindv;
+ sqlstm.sqpins = sqlstm.sqinds;
+ sqlstm.sqparm = sqlstm.sqharm;
+ sqlstm.sqparc = sqlstm.sqharc;
+ sqlstm.sqpadto = sqlstm.sqadto;
+ sqlstm.sqptdso = sqlstm.sqtdso;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	/* EXEC SQL DECLARE si CURSOR FOR statment; */ 
+
+	/* EXEC SQL OPEN si; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 12;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.stmt = "";
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )55;
+ sqlstm.selerr = (unsigned short)1;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlstm.sqcmod = (unsigned int )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	vector<StudentInfo> res;
+	for(;;)
+	{
+		/* EXEC SQL FETCH si INTO :number, :name, :gender, :phone, :email, :age; */ 
+
+{
+  struct sqlexd sqlstm;
+  sqlstm.sqlvsn = 12;
+  sqlstm.arrsiz = 6;
+  sqlstm.sqladtp = &sqladt;
+  sqlstm.sqltdsp = &sqltds;
+  sqlstm.iters = (unsigned int  )1;
+  sqlstm.offset = (unsigned int  )70;
+  sqlstm.selerr = (unsigned short)1;
+  sqlstm.cud = sqlcud0;
+  sqlstm.sqlest = (unsigned char  *)&sqlca;
+  sqlstm.sqlety = (unsigned short)4352;
+  sqlstm.occurs = (unsigned int  )0;
+  sqlstm.sqfoff = (           int )0;
+  sqlstm.sqfmod = (unsigned int )2;
+  sqlstm.sqhstv[0] = (         void  *)number;
+  sqlstm.sqhstl[0] = (unsigned int  )20;
+  sqlstm.sqhsts[0] = (         int  )0;
+  sqlstm.sqindv[0] = (         void  *)0;
+  sqlstm.sqinds[0] = (         int  )0;
+  sqlstm.sqharm[0] = (unsigned int  )0;
+  sqlstm.sqadto[0] = (unsigned short )0;
+  sqlstm.sqtdso[0] = (unsigned short )0;
+  sqlstm.sqhstv[1] = (         void  *)name;
+  sqlstm.sqhstl[1] = (unsigned int  )20;
+  sqlstm.sqhsts[1] = (         int  )0;
+  sqlstm.sqindv[1] = (         void  *)0;
+  sqlstm.sqinds[1] = (         int  )0;
+  sqlstm.sqharm[1] = (unsigned int  )0;
+  sqlstm.sqadto[1] = (unsigned short )0;
+  sqlstm.sqtdso[1] = (unsigned short )0;
+  sqlstm.sqhstv[2] = (         void  *)&gender;
+  sqlstm.sqhstl[2] = (unsigned int  )sizeof(int);
+  sqlstm.sqhsts[2] = (         int  )0;
+  sqlstm.sqindv[2] = (         void  *)0;
+  sqlstm.sqinds[2] = (         int  )0;
+  sqlstm.sqharm[2] = (unsigned int  )0;
+  sqlstm.sqadto[2] = (unsigned short )0;
+  sqlstm.sqtdso[2] = (unsigned short )0;
+  sqlstm.sqhstv[3] = (         void  *)phone;
+  sqlstm.sqhstl[3] = (unsigned int  )20;
+  sqlstm.sqhsts[3] = (         int  )0;
+  sqlstm.sqindv[3] = (         void  *)0;
+  sqlstm.sqinds[3] = (         int  )0;
+  sqlstm.sqharm[3] = (unsigned int  )0;
+  sqlstm.sqadto[3] = (unsigned short )0;
+  sqlstm.sqtdso[3] = (unsigned short )0;
+  sqlstm.sqhstv[4] = (         void  *)email;
+  sqlstm.sqhstl[4] = (unsigned int  )20;
+  sqlstm.sqhsts[4] = (         int  )0;
+  sqlstm.sqindv[4] = (         void  *)0;
+  sqlstm.sqinds[4] = (         int  )0;
+  sqlstm.sqharm[4] = (unsigned int  )0;
+  sqlstm.sqadto[4] = (unsigned short )0;
+  sqlstm.sqtdso[4] = (unsigned short )0;
+  sqlstm.sqhstv[5] = (         void  *)&age;
+  sqlstm.sqhstl[5] = (unsigned int  )sizeof(int);
+  sqlstm.sqhsts[5] = (         int  )0;
+  sqlstm.sqindv[5] = (         void  *)0;
+  sqlstm.sqinds[5] = (         int  )0;
+  sqlstm.sqharm[5] = (unsigned int  )0;
+  sqlstm.sqadto[5] = (unsigned short )0;
+  sqlstm.sqtdso[5] = (unsigned short )0;
+  sqlstm.sqphsv = sqlstm.sqhstv;
+  sqlstm.sqphsl = sqlstm.sqhstl;
+  sqlstm.sqphss = sqlstm.sqhsts;
+  sqlstm.sqpind = sqlstm.sqindv;
+  sqlstm.sqpins = sqlstm.sqinds;
+  sqlstm.sqparm = sqlstm.sqharm;
+  sqlstm.sqparc = sqlstm.sqharc;
+  sqlstm.sqpadto = sqlstm.sqadto;
+  sqlstm.sqptdso = sqlstm.sqtdso;
+  sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+		if(sqlca.sqlcode!=0)
+			break;
+		StudentInfo stu;
+		stu.number = number;
+		stu.name = name;
+		stu.gender = gender;
+		stu.phone = phone;
+		stu.email = email;
+		stu.age = age;
+		res.push_back(stu);
+	}
+	/* EXEC SQL CLOSE si; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 12;
+ sqlstm.arrsiz = 6;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )109;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	return res;
 }
 int DAL::Delete(string filter)
 {
