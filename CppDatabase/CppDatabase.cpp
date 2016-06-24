@@ -136,7 +136,6 @@ string genFilter()
 			}
 		}
 	}
-	filter += ";";
 	return filter;
 }
 INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
@@ -160,26 +159,28 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		return TRUE;
 		case WM_COMMAND:
 			ctrlID=LOWORD(wParam);
-			listView->ClearContent();
 			switch(ctrlID)
 			{
 				//TODO: 检查数据库操作的结果是否成功
 				case IDC_BTNADD:
+					listView->ClearContent();
 					dal->Add(getStudentInfo());
+					listView->Fill(dal->Get(""));//全部
 				break;
 				case IDC_BTNMODIFY:
+					listView->ClearContent();
 					dal->Update(getStudentInfo());
+					listView->Fill(dal->Get(""));//全部
 				break;
 				case IDC_BTNSEL:
-					dal->Get(genFilter());
+					listView->ClearContent();
+					listView->Fill(dal->Get(genFilter()));
 				break;
 				case IDC_BTNDEL:
+					listView->ClearContent();
 					dal->Delete(genFilter());
+					listView->Fill(dal->Get(""));//全部
 				break;
-			}
-			if(ctrlID!=IDC_BTNSEL)
-			{
-				listView->Fill(dal->Get(""));//全部
 			}
 		return TRUE;
 		case WM_CLOSE:

@@ -19,7 +19,7 @@ DAL::DAL(char* usr,char* pswd,char* serv)
 
 DAL::~DAL(void)
 {
-	EXEC SQL DISCONNECT ALL;
+	EXEC SQL COMMIT WORK RELEASE; 
 }
 
 bool DAL::Add(StudentInfo stu)
