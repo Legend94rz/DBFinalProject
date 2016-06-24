@@ -35,7 +35,7 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			listView->AddColumn("Email",4);
 			listView->AddColumn("Age",5);
 			//TODO: 修改用户名、密码、数据库名
-			dal=new DAL("scott","tiger","orcl");
+			dal=new DAL("c##scott","tiger","orcl");
 		return TRUE;
 		case WM_COMMAND:
 			ctrlID=LOWORD(wParam);
@@ -52,7 +52,8 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 					dal->Get(genFilter());
 				break;
 				case IDC_BTNDEL:
-					dal->Delete(genFilter());
+					//dal->Delete(genFilter());
+					dal->Delete("sno='161310101'");
 				break;
 			}
 			listView->ClearContent();
@@ -68,6 +69,6 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
 	hInst = hInstance;
-	DialogBox(NULL,MAKEINTRESOURCE(IDD_DLGMAIN),NULL,DlgProc);
+	DialogBox(NULL,MAKEINTRESOURCE(IDD_DLGMAIN),NULL,(DLGPROC)DlgProc);
 	return 0;
 }

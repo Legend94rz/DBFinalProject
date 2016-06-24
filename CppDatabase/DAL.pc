@@ -2,6 +2,13 @@
 #include <sqlca.h>
 EXEC SQL BEGIN DECLARE SECTION;
 char* username,* password,* server;
+const char * F;
+char number[20];
+char name[20];
+int gender;
+char phone[20];
+char email[20];
+int age;
 EXEC SQL END DECLARE SECTION;
 DAL::DAL(char* usr,char* pswd,char* serv)
 {
@@ -32,6 +39,19 @@ vector<StudentInfo> DAL::Get(string filter)
 }
 int DAL::Delete(string filter)
 {
-	//TODO: Delete from [StudentInfo] where + filter
-	return 0;
+	string str;
+	int count = 0;
+	if(filter=="")
+		filter="1=1";
+	str="delete from StudentInfo where "+filter;
+	F=str.c_str();
+	EXEC SQL EXECUTE IMMEDIATE :F;
+	if(sqlca.sqlcode!=0)
+	EXEC SQL ROLLBACK;
+	else if(sqlca.sqlcode==0)
+	{
+	count=sqlca.sqlerrd[2];
+	EXEC SQL COMMIT;
+	}
+	return count;
 }

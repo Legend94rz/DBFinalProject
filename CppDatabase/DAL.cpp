@@ -60,16 +60,16 @@ static struct sqltdss sqltds =
 struct sqlcxp
 {
   unsigned short fillen;
-           char  filnam[34];
+           char  filnam[36];
 };
 static const struct sqlcxp sqlfpn =
 {
-    33,
-    "G:\\CppDatabase\\CppDatabase\\DAL.pc"
+    35,
+    "E:\\VsProject\\db3\\CppDatabase\\DAL.pc"
 };
 
 
-static unsigned int sqlctx = 151555851;
+static unsigned int sqlctx = 1631023349;
 
 
 static struct sqlexd {
@@ -102,6 +102,7 @@ static struct sqlexd {
               int   sqfoff;
    unsigned int   sqcmod;
    unsigned int   sqfmod;
+   unsigned int   sqlpfmem;
             void  *sqhstv[4];
    unsigned int   sqhstl[4];
             int   sqhsts[4];
@@ -111,7 +112,7 @@ static struct sqlexd {
    unsigned int   *sqharc[4];
    unsigned short  sqadto[4];
    unsigned short  sqtdso[4];
-} sqlstm = {12,4};
+} sqlstm = {13,4};
 
 // Prototypes
 extern "C" {
@@ -135,8 +136,11 @@ typedef struct { unsigned short len; unsigned char arr[1]; } varchar;
 
 /* cud (compilation unit data) array */
 static const short sqlcud0[] =
-{12,4130,852,0,0,
-5,0,0,0,0,0,27,9,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+{13,4130,852,0,0,
+5,0,0,0,0,0,27,16,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
+36,0,0,2,0,0,24,48,0,0,1,1,0,1,0,1,97,0,0,
+55,0,0,3,0,0,31,50,0,0,0,0,0,1,0,
+70,0,0,4,0,0,29,54,0,0,0,0,0,1,0,
 };
 
 
@@ -145,6 +149,13 @@ static const short sqlcud0[] =
 /* EXEC SQL BEGIN DECLARE SECTION; */ 
 
 char* username,* password,* server;
+const char * F;
+char number[20];
+char name[20];
+int gender;
+char phone[20];
+char email[20];
+int age;
 /* EXEC SQL END DECLARE SECTION; */ 
 
 DAL::DAL(char* usr,char* pswd,char* serv)
@@ -154,7 +165,7 @@ DAL::DAL(char* usr,char* pswd,char* serv)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 4;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
@@ -231,6 +242,88 @@ vector<StudentInfo> DAL::Get(string filter)
 }
 int DAL::Delete(string filter)
 {
-	//TODO: Delete from [StudentInfo] where + filter
-	return 0;
+	string str;
+	int count = 0;
+	if(filter=="")
+		filter="1=1";
+	str="delete from StudentInfo where "+filter;
+	F=str.c_str();
+	/* EXEC SQL EXECUTE IMMEDIATE :F; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 13;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.stmt = "";
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )36;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlstm.sqhstv[0] = (         void  *)F;
+ sqlstm.sqhstl[0] = (unsigned int  )0;
+ sqlstm.sqhsts[0] = (         int  )0;
+ sqlstm.sqindv[0] = (         void  *)0;
+ sqlstm.sqinds[0] = (         int  )0;
+ sqlstm.sqharm[0] = (unsigned int  )0;
+ sqlstm.sqadto[0] = (unsigned short )0;
+ sqlstm.sqtdso[0] = (unsigned short )0;
+ sqlstm.sqphsv = sqlstm.sqhstv;
+ sqlstm.sqphsl = sqlstm.sqhstl;
+ sqlstm.sqphss = sqlstm.sqhsts;
+ sqlstm.sqpind = sqlstm.sqindv;
+ sqlstm.sqpins = sqlstm.sqinds;
+ sqlstm.sqparm = sqlstm.sqharm;
+ sqlstm.sqparc = sqlstm.sqharc;
+ sqlstm.sqpadto = sqlstm.sqadto;
+ sqlstm.sqptdso = sqlstm.sqtdso;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	if(sqlca.sqlcode!=0)
+	/* EXEC SQL ROLLBACK; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 13;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )55;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	else if(sqlca.sqlcode==0)
+	{
+	count=sqlca.sqlerrd[2];
+	/* EXEC SQL COMMIT; */ 
+
+{
+ struct sqlexd sqlstm;
+ sqlstm.sqlvsn = 13;
+ sqlstm.arrsiz = 4;
+ sqlstm.sqladtp = &sqladt;
+ sqlstm.sqltdsp = &sqltds;
+ sqlstm.iters = (unsigned int  )1;
+ sqlstm.offset = (unsigned int  )70;
+ sqlstm.cud = sqlcud0;
+ sqlstm.sqlest = (unsigned char  *)&sqlca;
+ sqlstm.sqlety = (unsigned short)4352;
+ sqlstm.occurs = (unsigned int  )0;
+ sqlcxt((void **)0, &sqlctx, &sqlstm, &sqlfpn);
+}
+
+
+	}
+	return count;
 }
