@@ -25,14 +25,17 @@ DAL::~DAL(void)
 bool DAL::Add(StudentInfo stu)
 {
 	//TODO: insert into [StudentInfo] (Number,Name,Gender,Phone,Email,Age) Values (stu.Number, stu.Name, stu.Gender, stu.Phone, stu.Email, stu.Age)
-	number = stu.number;
-	name = stu.name;
+	for(int i=0;i<20;i++){
+		number[i] = stu.number[i];
+		name[i] = stu.name[i];
+		phone[i] = stu.phone[i];
+		email[i] = stu.email[i];
+	}
+	
 	gender = stu.gender;
-	phone = stu.phone;
-	email = stu.email;
 	age = stu.age;
 	EXEC SQL INSERT into StudentInfo  (Sno,Name,Gender,Phone,Email,Age)
-	VALUES(number, name, gender. phone, email, age);
+	VALUES(:number,:name,:gender,:phone,:email,:age);
 	EXEC SQL COMMIT WORK;
 	return true;
 }
