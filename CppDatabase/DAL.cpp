@@ -60,16 +60,16 @@ static struct sqltdss sqltds =
 struct sqlcxp
 {
   unsigned short fillen;
-           char  filnam[34];
+           char  filnam[42];
 };
 static const struct sqlcxp sqlfpn =
 {
-    33,
-    "G:\\CppDatabase\\CppDatabase\\DAL.pc"
+    41,
+    "F:\\code\\DBFinalProject\\CppDatabase\\DAL.pc"
 };
 
 
-static unsigned int sqlctx = 151555851;
+static unsigned int sqlctx = 167735541;
 
 
 static struct sqlexd {
@@ -102,6 +102,7 @@ static struct sqlexd {
               int   sqfoff;
    unsigned int   sqcmod;
    unsigned int   sqfmod;
+   unsigned int   sqlpfmem;
             void  *sqhstv[6];
    unsigned int   sqhstl[6];
             int   sqhsts[6];
@@ -111,7 +112,7 @@ static struct sqlexd {
    unsigned int   *sqharc[6];
    unsigned short  sqadto[6];
    unsigned short  sqtdso[6];
-} sqlstm = {12,6};
+} sqlstm = {13,6};
 
 // Prototypes
 extern "C" {
@@ -135,7 +136,7 @@ typedef struct { unsigned short len; unsigned char arr[1]; } varchar;
 
 /* cud (compilation unit data) array */
 static const short sqlcud0[] =
-{12,4130,852,0,0,
+{13,4130,852,0,0,
 5,0,0,0,0,0,27,16,0,0,4,4,0,1,0,1,97,0,0,1,97,0,0,1,97,0,0,1,10,0,0,
 36,0,0,2,0,0,17,41,0,0,1,1,0,1,0,1,97,0,0,
 55,0,0,2,0,0,45,43,0,0,0,0,0,1,0,
@@ -166,7 +167,7 @@ DAL::DAL(char* usr,char* pswd,char* serv)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 4;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
@@ -223,7 +224,7 @@ DAL::DAL(char* usr,char* pswd,char* serv)
 
 DAL::~DAL(void)
 {
-	//TODO: Close Connection
+	//EXEC SQL DISCONNECT ALL;
 }
 
 bool DAL::Add(StudentInfo stu)
@@ -246,7 +247,7 @@ vector<StudentInfo> DAL::Get(string filter)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 4;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
@@ -284,7 +285,7 @@ vector<StudentInfo> DAL::Get(string filter)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 4;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
@@ -292,6 +293,7 @@ vector<StudentInfo> DAL::Get(string filter)
  sqlstm.iters = (unsigned int  )1;
  sqlstm.offset = (unsigned int  )55;
  sqlstm.selerr = (unsigned short)1;
+ sqlstm.sqlpfmem = (unsigned int  )0;
  sqlstm.cud = sqlcud0;
  sqlstm.sqlest = (unsigned char  *)&sqlca;
  sqlstm.sqlety = (unsigned short)4352;
@@ -308,13 +310,14 @@ vector<StudentInfo> DAL::Get(string filter)
 
 {
   struct sqlexd sqlstm;
-  sqlstm.sqlvsn = 12;
+  sqlstm.sqlvsn = 13;
   sqlstm.arrsiz = 6;
   sqlstm.sqladtp = &sqladt;
   sqlstm.sqltdsp = &sqltds;
   sqlstm.iters = (unsigned int  )1;
   sqlstm.offset = (unsigned int  )70;
   sqlstm.selerr = (unsigned short)1;
+  sqlstm.sqlpfmem = (unsigned int  )0;
   sqlstm.cud = sqlcud0;
   sqlstm.sqlest = (unsigned char  *)&sqlca;
   sqlstm.sqlety = (unsigned short)4352;
@@ -397,7 +400,7 @@ vector<StudentInfo> DAL::Get(string filter)
 
 {
  struct sqlexd sqlstm;
- sqlstm.sqlvsn = 12;
+ sqlstm.sqlvsn = 13;
  sqlstm.arrsiz = 6;
  sqlstm.sqladtp = &sqladt;
  sqlstm.sqltdsp = &sqltds;
