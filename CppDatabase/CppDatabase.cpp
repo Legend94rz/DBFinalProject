@@ -52,8 +52,8 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 					dal->Get(genFilter());
 				break;
 				case IDC_BTNDEL:
-					//dal->Delete(genFilter());
-					dal->Delete("sno='161310101'");
+					dal->Delete(genFilter());
+					//dal->Delete("sno='161310101'");
 				break;
 			}
 			listView->ClearContent();
