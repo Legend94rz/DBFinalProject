@@ -22,7 +22,6 @@
     <ProjectGuid>{1381AD6D-45FD-4CF4-9D2F-3D3A27E45647}</ProjectGuid>
     <RootNamespace>CppDatabase</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -70,17 +69,29 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -98,7 +109,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>orasql11.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>orasql12.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -120,7 +131,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>orasql11.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>orasql12.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -141,7 +152,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>orasql11.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>orasql12.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -166,7 +177,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>orasql11.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>orasql12.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
