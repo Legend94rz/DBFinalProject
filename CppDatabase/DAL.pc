@@ -38,14 +38,14 @@ bool DAL::Add(StudentInfo stu)
 }
 bool DAL::Update(StudentInfo stu)
 {
-	StudentInfo stu;
-	stu.number = number;
-	stu.name = name;
-	stu.gender = gender;
-	stu.phone = phone;
-	stu.email = email;
-	stu.age = age;
-	EXEC SQL UPDATE StudentInfo  set Name=:stu.Name,Gender=:stu.Gender,Phone=:stu.Phone,Email=:stu.Email,Age=:stu.Age where Sno=:stu.Number;
+	strcpy(number , stu.number.c_str());
+	strcpy(name ,stu.name.c_str());
+	strcpy(phone , stu.phone.c_str());
+	strcpy(email , stu.email.c_str());
+
+	gender = stu.gender;
+	age = stu.age;
+	EXEC SQL UPDATE StudentInfo  set Name=:name,Gender=:gender,Phone=:phone,Email=:email,Age=:age where Sno=:number;
 	EXEC SQL COMMIT WORK;
 	return true;
 }

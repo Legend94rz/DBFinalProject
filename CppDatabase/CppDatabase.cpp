@@ -143,6 +143,7 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	int ctrlID;
 	static ListView* listView;
 	static DAL* dal;
+	int row;
 	switch(uMsg)
 	{
 		case WM_INITDIALOG:
@@ -178,7 +179,9 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 				break;
 				case IDC_BTNDEL:
 					listView->ClearContent();
-					dal->Delete(genFilter());
+					CHAR buf[255];
+					wsprintf(buf,TEXT("删除 %d 行"), dal->Delete(genFilter()));
+					MessageBox(hwnd,buf,TEXT("提示"),MB_OK|MB_ICONINFORMATION);
 					listView->Fill(dal->Get(""));//全部
 				break;
 			}
