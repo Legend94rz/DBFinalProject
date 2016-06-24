@@ -34,7 +34,8 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			listView->AddColumn("Phone",3);
 			listView->AddColumn("Email",4);
 			listView->AddColumn("Age",5);
-			//TODO: 修改用户名、密码、数据库名
+			//TODO: 修改用户名、密码、数据库名    
+
 			dal=new DAL("scott","tiger","orcl");
 		return TRUE;
 		case WM_COMMAND:
