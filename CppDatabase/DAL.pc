@@ -86,11 +86,11 @@ int DAL::Delete(string filter)
 	F=str.c_str();
 	EXEC SQL EXECUTE IMMEDIATE :F;
 	if(sqlca.sqlcode!=0)
-	EXEC SQL ROLLBACK;
+		EXEC SQL ROLLBACK;
 	else if(sqlca.sqlcode==0)
 	{
-	count=sqlca.sqlerrd[2];
-	EXEC SQL COMMIT;
+		count=sqlca.sqlerrd[2];
+		EXEC SQL COMMIT;
 	}
 	return count;
 }
