@@ -2,18 +2,11 @@
 #include <sqlca.h>
 EXEC SQL BEGIN DECLARE SECTION;
 char* username,* password,* server;
-const char* F;
-char number[20];
-char name[20];
-int gender;
-char phone[20];
-char email[20];
-int age;
 EXEC SQL END DECLARE SECTION;
 DAL::DAL(char* usr,char* pswd,char* serv)
 {
 	username=usr;password=pswd;server=serv;
-	EXEC SQL CONNECT :username IDENTIFIED BY :password USING :server;
+	EXEC SQL CONNECT:username IDENTIFIED BY:password USING:server;
 	assert(sqlca.sqlcode==0);
 }
 
@@ -34,30 +27,8 @@ bool DAL::Update(StudentInfo stu)
 }
 vector<StudentInfo> DAL::Get(string filter)
 {
-	if(filter=="")
-		filter="1=1";
-	string stmt="select * from StudentInfo where "+filter;
-	F = stmt.c_str();
-	EXEC SQL PREPARE statment FROM :F;
-	EXEC SQL DECLARE si CURSOR FOR statment;
-	EXEC SQL OPEN si;
-	vector<StudentInfo> res;
-	for(;;)
-	{
-		EXEC SQL FETCH si INTO :number, :name, :gender, :phone, :email, :age;
-		if(sqlca.sqlcode!=0)
-			break;
-		StudentInfo stu;
-		stu.number = number;
-		stu.name = name;
-		stu.gender = gender;
-		stu.phone = phone;
-		stu.email = email;
-		stu.age = age;
-		res.push_back(stu);
-	}
-	EXEC SQL CLOSE si;
-	return res;
+	//TODO: Select * from [StudentInfo] where + filter
+	return vector<StudentInfo>();
 }
 int DAL::Delete(string filter)
 {

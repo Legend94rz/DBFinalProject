@@ -39,7 +39,6 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		return TRUE;
 		case WM_COMMAND:
 			ctrlID=LOWORD(wParam);
-			listView->ClearContent();
 			switch(ctrlID)
 			{
 				//TODO: 检查数据库操作的结果是否成功
@@ -56,10 +55,8 @@ INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 					dal->Delete(genFilter());
 				break;
 			}
-			if(ctrlID!=IDC_BTNSEL)
-			{
-				listView->Fill(dal->Get(""));//全部
-			}
+			listView->ClearContent();
+			listView->Fill(dal->Get(""));//全部
 		return TRUE;
 		case WM_CLOSE:
 			EndDialog(hwnd,0);
