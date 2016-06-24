@@ -69,29 +69,29 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>E:\app\yang_db\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\app\yang_db\product\12.1.0\dbhome_1\OCI\include;E:\app\yang_db\product\12.1.0\dbhome_1\precomp\public;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\app\yang_db\product\12.1.0\dbhome_1\precomp\LIB;E:\app\yang_db\product\12.1.0\dbhome_1\OCI\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>E:\app\yang_db\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\app\yang_db\product\12.1.0\dbhome_1\precomp\public;E:\app\yang_db\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\app\yang_db\product\12.1.0\dbhome_1\OCI\lib;E:\app\yang_db\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>E:\app\yang_db\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\app\yang_db\product\12.1.0\dbhome_1\OCI\include;E:\app\yang_db\product\12.1.0\dbhome_1\precomp\public;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\app\yang_db\product\12.1.0\dbhome_1\precomp\LIB;E:\app\yang_db\product\12.1.0\dbhome_1\OCI\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <ExecutablePath>C:\oracle\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>C:\oracle\product\12.1.0\dbhome_1\precomp\public;C:\oracle\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\oracle\product\12.1.0\dbhome_1\OCI\lib;C:\oracle\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>E:\app\yang_db\product\12.1.0\dbhome_1\BIN;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\app\yang_db\product\12.1.0\dbhome_1\precomp\public;E:\app\yang_db\product\12.1.0\dbhome_1\OCI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\app\yang_db\product\12.1.0\dbhome_1\OCI\lib;E:\app\yang_db\product\12.1.0\dbhome_1\precomp\LIB;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
