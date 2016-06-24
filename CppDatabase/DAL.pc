@@ -24,25 +24,22 @@ DAL::~DAL(void)
 
 bool DAL::Add(StudentInfo stu)
 {
-	//TODO: insert into [StudentInfo] (Number,Name,Gender,Phone,Email,Age) Values (stu.Number, stu.Name, stu.Gender, stu.Phone, stu.Email, stu.Age)
-	for(int i=0;i<20;i++){
-		number[i] = stu.number[i];
-		name[i] = stu.name[i];
-		phone[i] = stu.phone[i];
-		email[i] = stu.email[i];
-	}
+	strcpy(number , stu.number.c_str());
+	strcpy(name ,stu.name.c_str());
+	strcpy(phone , stu.phone.c_str());
+	strcpy(email , stu.email.c_str());
 	
 	gender = stu.gender;
 	age = stu.age;
-	EXEC SQL INSERT into StudentInfo  (Sno,Name,Gender,Phone,Email,Age)
-	VALUES(:number,:name,:gender,:phone,:email,:age);
+	EXEC SQL INSERT into StudentInfo  (Sno,Name,Gender,Phone,Email,Age) VALUES(:number,:name,:gender,:phone,:email,:age);
+	bool temp = sqlca.sqlcode==0;
 	EXEC SQL COMMIT WORK;
-	return true;
+	return temp;
 }
 bool DAL::Update(StudentInfo stu)//根据学生学号进行查询更新？
 {
 	//TODO: Update [StudentInfo] set Name=stu.Name,Gender=stu.Gender,Phone=stu.Phone,Email=stu.Email,Age=stu.Age where Number=stu.Number;
-	
+	/*
 	EXEC SQL DECLARE SX CURSOR FOR SELECT Number,Name,Gender,Phone,Email,Age FROM StudentInfo where Sno=:stu.Sno;
 	EXEC SQL OPEN SX;
 	for(;;)
@@ -62,7 +59,7 @@ bool DAL::Update(StudentInfo stu)//根据学生学号进行查询更新？
 	}
 	
 	EXEC SQL CLOSE　SX;
-	EXEC SQL COMMIT WORK;
+	EXEC SQL COMMIT WORK;*/
 	return true;
 }
 vector<StudentInfo> DAL::Get(string filter)

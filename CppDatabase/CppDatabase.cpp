@@ -161,10 +161,10 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			ctrlID=LOWORD(wParam);
 			switch(ctrlID)
 			{
-				//TODO: 检查数据库操作的结果是否成功
 				case IDC_BTNADD:
 					listView->ClearContent();
-					dal->Add(getStudentInfo());
+					if(!dal->Add(getStudentInfo()))
+						MessageBox(hwnd,TEXT("插入失败"),TEXT("错误"),MB_OK);
 					listView->Fill(dal->Get(""));//全部
 				break;
 				case IDC_BTNMODIFY:
