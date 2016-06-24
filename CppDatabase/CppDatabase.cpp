@@ -19,7 +19,7 @@ string genFilter()
 	//Todo: 从UI上构造过滤条件。注意处理条件格式不对的情况
 	return "";
 }
-INT CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
+INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 {
 	int ctrlID;
 	static ListView* listView;
