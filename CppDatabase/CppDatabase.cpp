@@ -44,6 +44,7 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 				//TODO: 检查数据库操作的结果是否成功
 				case IDC_BTNADD:
 					dal->Add(getStudentInfo());
+					listView->Fill(dal->Get(""));//全部
 				break;
 				case IDC_BTNMODIFY:
 					dal->Update(getStudentInfo());
