@@ -155,7 +155,7 @@ INT_PTR CALLBACK DlgProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			listView->AddColumn("Email",4);
 			listView->AddColumn("Age",5);
 			//TODO: 修改用户名、密码、数据库名
-			dal=new DAL("SYSTEM","Tiger123","orcl");
+			dal=new DAL("scott","tiger","orcl");
 			hwnd1 = hwnd;
 		return TRUE;
 		case WM_COMMAND:
